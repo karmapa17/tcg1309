@@ -73,7 +73,25 @@ void init_settings()
 
 void prn_cal(void)
 {
-    int cur_year, last_year;
+    int cur_year, last_year, new_year, zla0, zla1, intercal, delaymth,
+        yr_elemx, mt_elemx, sd_elemx, e, g, i, nextlhag, nextchad, lunmanx,
+        sbyorba, byedpa, byedpax, yr_animx, mt_animx, ld_animx, sd_animx,
+        chad, lhag, sd_clunmanx, ld_parx, sd_smex, ld_smex, ZS_s,
+        ZS_d, ZS_m, newmth, more, n;
+
+    // 1 = female, odd; 0 = male, even
+    int yr_gender;
+
+    // 1 = female, odd; 0 = male, even
+    int mt_gender;
+
+    // Adjusted, without negative.
+    int mthnum;
+
+    // Last and next JD calculations.
+    int curjd, nextjd;
+
+    int lastjd = 0;
 
     init_settings();
     set_lang();
@@ -110,7 +128,7 @@ donextyear:
 
     if (fptgt == NULL) {
         printf("Error opening target file!\n");
-        getch();
+        return;
     }
 
     // tt not yet set
