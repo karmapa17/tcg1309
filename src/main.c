@@ -13,8 +13,8 @@ int epch = 1;
 
 int main()
 {
-    printf("Hello World");
+    printf("Hello World\n");
     init_settings(epch);
     prn_cal();
-    printf("Good Night");
+    printf("Good Night\n");
 }
