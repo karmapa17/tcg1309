@@ -1,2 +1,2 @@
 # tcg1309
-http://www.kalacakra.org/calendar/os\_tib.htm
+http://www.kalacakra.org/calendar/os_tib.htm
