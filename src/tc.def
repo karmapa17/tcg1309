@@ -230,3 +230,16 @@ Element:  Fire  Fire  Earth  Earth  Iron  Iron  Water  Water  Wood  Wood
 Sme ba:   White  Black  Blue  Green  Yellow  White  Red  White  Red
           1    2     3    4      5     6    7    0
 Trigram:  li  khon  dwa  khen  kham   gin  zin  zon  ******************/
+
+
+/* utils */
+static int nda2[6] = { 0, 7, 25, 0, 30, 0 }; // OK
+static int gda2[6] = { 5, 38, 22, 3, 701, 0 }; // OK
+int spz_b, spz_c, spz_f, spz_j;
+int gzada[6];
+int nyida[6];
+static int nyilmg[6] = { 0, 4, 21, 5, 43, 0 }; // Each lunar day
+int nyidm[6], gzadm[6], tsedm[6], nyilm[6];
+static int nyidmg[6] = { 2, 10, 58, 1, 17, 0 };
+static int tsedmg[6] = { 0, 59, 3, 4, 16, 0 };
+static int gzadmg[6] = { 1, 31, 50, 0, 480, 0 };
