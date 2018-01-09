@@ -1,3 +1,12 @@
+/**
+ * 1. Generalised Phugpa, -1000.",
+ * 2. Generalised Tsurphu, -1000.",
+ * 3. Generalised Error Correction, -2000.",
+ * 4. mkhas pa'i snying nor, 1796.",
+ * 5. New Genden Calculations, 1747 CE."
+ */
+int epch = 1;
+
 void set_lang(void)
 {
     int i;
@@ -31,7 +40,7 @@ void set_grub(void)
     gza_f = 707;
 }
 
-void init_settings(epch)
+void init_settings()
 {
     if (1 == epch) {
         set_grub();
@@ -64,5 +73,6 @@ void init_settings(epch)
 
 void prn_cal(void)
 {
+    init_settings();
     set_lang();
 }
