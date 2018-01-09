@@ -12,7 +12,7 @@ void set_lang(void)
     }
 }
 
-void set_grub (void)
+void set_grub(void)
 {
     int  i;
     for (i = 0; i < 6; ++i) {
@@ -62,7 +62,7 @@ void init_settings(epch)
     }
 }
 
-void prn_cal (void)
+void prn_cal(void)
 {
     set_lang();
 }
