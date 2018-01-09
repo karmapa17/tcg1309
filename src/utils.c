@@ -73,6 +73,19 @@ void init_settings()
 
 void prn_cal(void)
 {
+    int cur_year, last_year;
+
     init_settings();
     set_lang();
+
+    printf( "\n\n%s\n", e_str[epch] );
+    printf("Enter the starting year: ");
+    scanf("%d", &ty);
+    printf ("\n");
+
+    cur_year = ty;
+
+    printf("Enter the finish year: ");
+    scanf("%d", &last_year );
+    printf("\n");
 }
