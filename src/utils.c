@@ -133,12 +133,12 @@ void jul2date (int jd) {
     // by Oct 15th
     // First, get day of week:
 
-    doweek = jd - 7 * (( jd + 1 ) / 7 ) + 2;
+    doweek = jd - 7 * ((jd + 1) / 7) + 2;
     if (doweek == 7) {
         doweek = 0;
     }
     if (doweek > 7) {
-        printf( "ERROR IN DAY OF WEEK ROUTINE:\n");
+        printf("ERROR IN DAY OF WEEK ROUTINE:\n");
         return;
     }
 
@@ -146,32 +146,32 @@ void jul2date (int jd) {
 
         // This has been tested between March 1, 1600 and Jan 31, 2100
         l = jd + 68569;
-        n = ( 4 * l ) / 146097;
-        l = l - ( 146097 * n + 3 ) / 4;
+        n = (4 * l) / 146097;
+        l = l - (146097 * n + 3) / 4;
 
-        //  wy = 4000 * ( l + 1 ) / 1461001;
+        //  wy = 4000 * (l + 1) / 1461001;
 
         l2bcd(bcda, 4000);
         mulbcdl(bcda, bcda, l + 1);
         divbcdl(bcda, bcda, 1461001);
         wy = bcd2l(bcda);
 
-        l = l - ( 1461 * wy ) / 4 + 31;
-        wm = ( 80 * l ) / 2447;
-        wd = l - ( 2447 * wm ) / 80;
+        l = l - (1461 * wy) / 4 + 31;
+        wm = (80 * l) / 2447;
+        wd = l - (2447 * wm) / 80;
         l = wm / 11;
         wm = wm + 2 - 12 * l;
-        wy = 100 * ( n - 49 ) + wy + l;
+        wy = 100 * (n - 49) + wy + l;
         // j = month, k = day, i = year
     }
     else {    // Julian calendar
         j = jd + 1402;
-        k = ( j - 1 ) / 1461;
+        k = (j - 1) / 1461;
         l = j - 1461 * k;
-        n = ( l - 1 ) / 365 - l / 1461;
+        n = (l - 1) / 365 - l / 1461;
         i = l - 365 * n + 30;
-        j = ( 80 * i ) / 2447;
-        wd = i - ( 2447 * j ) / 80;
+        j = (80 * i) / 2447;
+        wd = i - (2447 * j) / 80;
         i = j / 11;
         wm = j + 2 - 12 * i;
         wy = 4 * k + n + i - 4716;
