@@ -128,6 +128,12 @@ void clrlst(int *l)
     }
 }
 
+void clear_a_b(void)
+{
+    clrlst(lista);
+    clrlst(listb);
+}
+
 // Check for main Earth-lords, "sa bdag"
 int chk_sadag (int m, int t)
 {
