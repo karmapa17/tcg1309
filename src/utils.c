@@ -253,6 +253,50 @@ void jul2date (int jd) {
     }
 }
 
+void div_g6 (int * a, int x, int frac4, int frac5) {
+
+    l2bcd(bcdx0, a[0]);
+    l2bcd(bcdx1, a[1]);
+    l2bcd(bcdx2, a[2]);
+    l2bcd(bcdx3, a[3]);
+    l2bcd(bcdx4, a[4]);
+    l2bcd(bcdx5, a[5]);
+
+    modbcdl(bcary, bcdx0, x);
+    divbcdl(bcdx0, bcdx0, x);
+    mulbcdl(bcary, bcary, 60);
+    addbcd(bcdx1, bcdx1, bcary);
+
+    modbcdl(bcary, bcdx1, x);
+    divbcdl(bcdx1, bcdx1, x);
+    mulbcdl(bcary, bcary, 60);
+    addbcd(bcdx2, bcdx2, bcary);
+
+    modbcdl(bcary, bcdx2, x);
+    divbcdl(bcdx2, bcdx2, x);
+    mulbcdl(bcary, bcary, 6);
+    addbcd(bcdx3, bcdx3, bcary);
+
+    modbcdl(bcary, bcdx3, x);
+    divbcdl(bcdx3, bcdx3, x);
+    mulbcdl(bcary, bcary, frac4);
+    addbcd(bcdx4, bcdx4, bcary);
+
+    modbcdl(bcary, bcdx4, x);
+    divbcdl(bcdx4, bcdx4, x);
+    mulbcdl(bcary, bcary, frac5);
+    addbcd(bcdx5, bcdx5, bcary);
+
+    divbcdl(bcdx5, bcdx5, x);
+
+    a[0] = bcd2l(bcdx0);
+    a[1] = bcd2l(bcdx1);
+    a[2] = bcd2l(bcdx2);
+    a[3] = bcd2l(bcdx3);
+    a[4] = bcd2l(bcdx4);
+    a[5] = bcd2l(bcdx5);
+}
+
 // Function to calculate true solar longitude, "nyi dag".
 void nyi_dag(int *a1) {
 
