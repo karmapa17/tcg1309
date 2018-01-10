@@ -40,6 +40,31 @@ void set_grub(void)
     gza_f = 707;
 }
 
+// Function to calculate true month, "zla ba rnam par dag pa"
+void zla_dag (int y, int m) // KTC 15
+{
+    int yr, a, b;    // c;
+    yr = y - epch_yr;
+
+    // 'khrul sel
+    if (epch == 2) {
+      a = 12 * yr + m - 2;
+    }
+    else {
+      a = 12 * yr + m - 3;
+    }
+
+    if (a >= 0) {
+        b = 2 * a + eyr_a;
+        zladag[1] = b % 65;
+        zladag[0] = a + b / 65;
+    }
+    else {
+        zladag[1] = 0;
+        zladag[0] = 0;
+    }
+}
+
 void init_settings()
 {
     if (1 == epch) {
