@@ -73,6 +73,288 @@ void clrlst(int *l)
     }
 }
 
+// Check for main Earth-lords, "sa bdag"
+int chk_sadag (int m, int t)
+{
+    int i = 0;
+    int n;
+
+    // First, "yan kwong": // Data from Kongleg.
+    yan_kwong_flg = 0;
+
+    if (m == 1 && t == 13) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 2 && t == 11) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 3 && t == 9) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 4 && t == 7) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 5 && t == 5) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 6 && t == 3) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 7 && t == 1) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 7 && t == 29) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 8 && t == 27) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 9 && t == 25) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 10 && t == 23) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 11 && t == 21) {
+        yan_kwong_flg = 1;
+    }
+    else if (m == 12 && t == 19) {
+        yan_kwong_flg = 1;
+    }
+
+    // Now, "zin phung":
+    zin_phung_flg = 0;
+
+    // These data are taken from Mongolian data in VKP2.DOC
+
+    if (m == 1 || m == 2 || m == 3) {    // dpyid gsum, etc.
+        if (t == 1 || t == 7 || t == 13 || t == 19 || t == 25) {
+            zin_phung_flg = 1;
+        }
+    }
+    else if (m == 4 || m == 5 || m == 6) {
+        if (t == 6 || t == 12 || t == 18 || t == 24 || t == 30) {
+          zin_phung_flg = 1;
+        }
+    }
+    else if (m == 7 || m == 8 || m == 9) {
+        if (t == 3 || t == 9 || t == 15 || t == 21 || t == 27) {
+             zin_phung_flg = 1;
+        }
+    }
+    else if (m == 10 || m == 11 || m == 12) {
+        if (t == 4 || t == 10 || t == 16 || t == 22 || t == 28) {
+            zin_phung_flg = 1;
+        }
+    }
+
+    //  zin_phung_flg = 0; // Take it out for now. Need to check data.
+    // Now, "klu bzlog":
+    klu_bzlog_flg = 0;
+
+    if (m == 1) {
+        if (t == 5 || t == 10 || t == 15) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 2) {
+        if (t == 8 || t == 18 || t == 20 || t == 22 || t == 28) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 4) {
+        if (t == 20 || t == 25) {
+            klu_bzlog_flg = 1;
+        }
+      }
+    else if (m == 5) {
+        if (t == 8 || t == 15) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 6) {
+        if (t == 11 || t == 13 || t == 15 || t == 23) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 7) {
+        if (t == 5 || t == 6) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 8) {
+        if (t == 3 || t == 6 || t == 9 || t == 13 || t == 16) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 9) {
+        if (t == 9 || t == 10 || t == 19) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 10) {
+        if (t == 9 || t == 10 || t == 19 || t == 26) {
+            klu_bzlog_flg = 1;
+        }
+    }
+    else if (m == 11) {
+        if (t == 2 || t == 6 || t == 16 || t == 20 || t == 26) {
+            klu_bzlog_flg = 1;
+        }
+    }
+
+    // Now, "klu thebs":
+    klu_thebs_flg = 0;
+
+    if (m == 1) {
+        if (t == 14) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 2) {
+        if (t == 10) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 3) {
+        if (t == 25) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 4) {
+        if (t == 8 || t == 15) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 5) {
+        if (t == 20 || t == 22) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 6) {
+        if (t == 5 || t == 20 || t == 25) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 7) {
+        if (t == 9 || t == 19) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 8) {
+        if (t == 5 || t == 15) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 9) {
+        if (t == 1 || t == 11 || t == 21 || t == 22 || t == 23) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 10) {
+        if (t == 8 || t == 15 || t == 18) {
+            klu_thebs_flg = 1;
+        }
+    }
+    else if (m == 11) {
+        if (t == 7 || t == 15 || t == 21) {
+            klu_thebs_flg = 1;
+        }
+    }
+
+    // Now, "nyi nag": // Data from Vaidurya dkar po.
+    nyi_nag_flg = 0;
+
+    if (m == 1 && t == 7) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 2 && t == 14) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 3 && t == 21) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 4 && t == 8) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 5 && t == 16) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 6 && t == 24) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 7 && t == 9) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 8 && t == 18) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 9 && t == 27) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 10 && t == 10) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 11 && t == 20) {
+        nyi_nag_flg = 1;
+    }
+    else if (m == 12 && t == 30) {
+        nyi_nag_flg = 1;
+    }
+
+    // Now, build string
+    n = yan_kwong_flg + klu_bzlog_flg + klu_thebs_flg + zin_phung_flg + nyi_nag_flg;
+
+    if (n == 0) {
+        return 0;
+    }
+    sadag_str[0] = '\0';
+
+    if (yan_kwong_flg) {
+        strcat(sadag_str, "yan kwong");
+        i++;
+    }
+    if (klu_bzlog_flg) {
+        if (i) {
+          strcat(sadag_str, ", ");
+        }
+        strcat(sadag_str, "klu bzlog");
+        i++;
+    }
+    if (klu_thebs_flg) {
+        if (i) {
+            strcat(sadag_str, ", ");
+        }
+        strcat(sadag_str, "klu thebs");
+        i++;
+    }
+    if (zin_phung_flg) {
+        if (i) {
+            strcat(sadag_str, ", ");
+        }
+        strcat(sadag_str, "zin phung");
+        i++;
+    }
+    if (nyi_nag_flg) {
+        if (i) {
+            strcat(sadag_str, ", ");
+        }
+        if (m == 1) {
+            strcat(sadag_str, "nyi nag ngan pa dgu 'dzom");
+        }
+        else {
+            strcat(sadag_str, "nyi nag");
+        }
+        i++;
+    }
+    i = strlen(sadag_str);
+
+    if (i > sadag_str_len) {    // Max 35 in testing.
+        sadag_str_len = i;
+    }
+    return 1;
+}
+
 void mul_gen (int *res, int *lst, int x, int n1, int n2)
 {
     if (x >= 0) {
