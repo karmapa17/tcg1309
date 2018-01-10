@@ -120,6 +120,64 @@ void zla_dag (int y, int m) // KTC 15
     }
 }
 
+void jul2date (int jd) {
+
+    int l, n, j, k, i;
+
+    // This algorithm is from photcopied notes, from James Neely.
+    // Also, checked with ESAA, 1992, p. 604
+    // Calculates date, at noon on which the Julian date starts.
+    // Julian 0 starts Greenwich mean noon on 1st Jan 4713 BC, Julian proleptic
+    // calendar.
+    // In change from Julian to Gregorian calendars, in 1582, Oct 4th was followed
+    // by Oct 15th
+    // First, get day of week:
+
+    doweek = jd - 7 * (( jd + 1 ) / 7 ) + 2;
+    if (doweek == 7) {
+        doweek = 0;
+    }
+    if (doweek > 7) {
+        printf( "ERROR IN DAY OF WEEK ROUTINE:\n");
+        return;
+    }
+
+    if (jd >= 2299161) {  // Gregorian calendar:
+
+        // This has been tested between March 1, 1600 and Jan 31, 2100
+        l = jd + 68569;
+        n = ( 4 * l ) / 146097;
+        l = l - ( 146097 * n + 3 ) / 4;
+
+        //  wy = 4000 * ( l + 1 ) / 1461001;
+
+        l2bcd(bcda, 4000);
+        mulbcdl(bcda, bcda, l + 1);
+        divbcdl(bcda, bcda, 1461001);
+        wy = bcd2l(bcda);
+
+        l = l - ( 1461 * wy ) / 4 + 31;
+        wm = ( 80 * l ) / 2447;
+        wd = l - ( 2447 * wm ) / 80;
+        l = wm / 11;
+        wm = wm + 2 - 12 * l;
+        wy = 100 * ( n - 49 ) + wy + l;
+        // j = month, k = day, i = year
+    }
+    else {    // Julian calendar
+        j = jd + 1402;
+        k = ( j - 1 ) / 1461;
+        l = j - 1461 * k;
+        n = ( l - 1 ) / 365 - l / 1461;
+        i = l - 365 * n + 30;
+        j = ( 80 * i ) / 2447;
+        wd = i - ( 2447 * j ) / 80;
+        i = j / 11;
+        wm = j + 2 - 12 * i;
+        wy = 4 * k + n + i - 4716;
+    }
+}
+
 void clrlst(int *l)
 {
     int n;
