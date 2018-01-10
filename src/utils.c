@@ -112,6 +112,26 @@ void mul_gen (int *res, int *lst, int x, int n1, int n2)
     }
 }
 
+void add_gen(int *a1, int *a2, int *a3, int n1, int n2)
+{
+    int r;
+    r = a2[4] + a3[4];
+    if (r < 0) {
+        printf("\n\nERROR IN ADD_GEN:\n");
+        printf("A2[4] = %d\n", a2[4]);
+        printf("A3[4] = %d\n\n", a3[4]);
+    }
+    a1[4] = r % n2;
+    r = a2[3] + a3[3] + r / n2;
+    a1[3] = r % 6;
+    r = a2[2] + a3[2] + r / 6;
+    a1[2] = r % 60;
+    r = a2[1] + a3[1] + r / 60;
+    a1[1] = r % 60;
+    r = a2[0] + a3[0] + r / 60;
+    a1[0] = r % n1;
+}
+
 // Adjust month number, if needed
 void adj_zla (void)
 {
