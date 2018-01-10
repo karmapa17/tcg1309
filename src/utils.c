@@ -687,6 +687,13 @@ void mul_gen (int *res, int *lst, int x, int n1, int n2)
     }
 }
 
+// Function to calculate month mean Sun, "nyi ma'i dhru ba".
+void nyi_dru(int x)
+{
+    mul_gen(nyidru, nyidm, x, 27, sun_f);
+    add_gen(nyidru, nyidru, nyida, 27, sun_f);
+}
+
 void gza_dru(int x)
 {
     mul_gen(gzadru, gzadm, x, 7, gza_f);
