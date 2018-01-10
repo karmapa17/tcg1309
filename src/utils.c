@@ -132,6 +132,12 @@ void add_gen(int *a1, int *a2, int *a3, int n1, int n2)
     a1[0] = r % n1;
 }
 
+void gza_dru(int x)
+{
+    mul_gen(gzadru, gzadm, x, 7, gza_f);
+    add_gen(gzadru, gzadru, gzada, 7, gza_f);
+}
+
 // Adjust month number, if needed
 void adj_zla (void)
 {
