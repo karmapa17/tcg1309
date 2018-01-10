@@ -687,6 +687,16 @@ void mul_gen (int *res, int *lst, int x, int n1, int n2)
     }
 }
 
+// Function to calculate lunar anomaly, "ril cha"
+void rilchaf (int x)    // KTC 21
+{
+    int a, b;
+    b = x + ril_b;
+    a = 2 * x + ril_a + b / 126;
+    rilcha[1] = b % 126;
+    rilcha[0] = a % 28;
+}
+
 // Function to calculate lunar day solar longitude, "nyi ma'i longs spyod".
 void nyi_lon(int x)
 {
