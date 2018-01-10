@@ -77,7 +77,8 @@ void prn_cal(void)
         yr_elemx, mt_elemx, sd_elemx, e, g, i, nextlhag, nextchad, lunmanx,
         sbyorba, byedpa, byedpax, yr_animx, mt_animx, ld_animx, sd_animx,
         chad, lhag, sd_clunmanx, ld_parx, sd_smex, ld_smex, ZS_s,
-        ZS_d, ZS_m, newmth, more, n, prv_byedpa, prv_byedpax, prv_sbyorba;
+        ZS_d, ZS_m, newmth, more, n, prv_byedpa, prv_byedpax, prv_sbyorba,
+        Cmonth, prv_lunmanx;
 
     // 1 = female, odd; 0 = male, even
     int yr_gender;
