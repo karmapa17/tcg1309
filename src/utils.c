@@ -687,6 +687,12 @@ void mul_gen (int *res, int *lst, int x, int n1, int n2)
     }
 }
 
+// Function to calculate lunar day solar longitude, "nyi ma'i longs spyod".
+void nyi_lon(int x)
+{
+    mul_gen(nyilon, nyilm, x, 27, sun_f);
+}
+
 // Function to calculate month mean Sun, "nyi ma'i dhru ba".
 void nyi_dru(int x)
 {
