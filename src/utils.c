@@ -607,6 +607,73 @@ void init_settings()
     }
 }
 
+// Function to calculate true weekday, "gza' dag".
+void gza_dag(int *a1)
+{
+    static int gzabye[14] = { 5, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -5, -5, 5 };
+    static int gzadom[14] = { 5, 10, 15, 19, 22, 24, 25, 24, 22, 19, 15, 10, 5, 0 };
+    int tot, trem, chasha, rilpo;
+    int gzawor[5];
+
+    clrlst (list1);
+    clrlst (list2);
+    clrlst (zerlst);
+    rilpo = rilcha[0] + tt;
+    trem = rilpo % 14;
+    if (trem == 0) {
+      trem = 14;
+    }
+    list2[1] = gzadom[trem - 1];
+    gza_short_flg = 0; // KTC 26  --- debug
+    if (gza_short_flg) {    // Flag for less accurate weekday adjustment
+        chasha = rilcha[1] * gzabye[trem - 1] * 254520; // 60 * 6 * 707
+        // Maximum value = 125 * 5 * 254520 = 159075000 - OK
+        tot = chasha / 126;
+    }
+    else {
+        l2bcd(bcda, (30 * rilcha[1] + tt) * gzabye[trem - 1]);
+        mulbcdl(bcda, bcda, 360 * gza_f);
+        divbcdl(bcda, bcda, 3780);
+        tot = bcd2l (bcda);
+    }
+    if (tot < 0) {    // KTC 24
+        list1[4] = -tot;
+        add_gen(list1, list1, zerlst, 7, gza_f);
+        sub_gen(list3, list2, list1, 7, gza_f);
+    }
+    else {
+        list1[4] = tot;
+        add_gen(list1, list1, zerlst, 7, gza_f);
+        add_gen(list3, list2, list1, 7, gza_f);
+    }
+    if ((rilpo / 14) % 2 == 0) {    // For the semi-true weekday
+      add_gen(gzawor, a1, list3, 7, gza_f);
+    }
+    else {
+      sub_gen(gzawor, a1, list3, 7, gza_f);
+    }
+
+    l2bcd(bcda, gzawor[4]);
+    mulbcdl(bcda, bcda, sun_f);
+    divbcdl(bcda, bcda, gza_f);
+    gzawor[4] = bcd2l(bcda);
+
+    //  The above replaces:
+    //  gzawor[4] = ( sun_f * gzawor[4] ) / gza_f;
+    if (nyidor == 0) {
+      sub_gen(gzadag, gzawor, listc, 7, sun_f);
+    }
+    else {
+      add_gen (gzadag, gzawor, listc, 7, sun_f);
+    }
+
+    // Convert back the lowest fractional part:
+    l2bcd(bcda, gzadag[4]);
+    mulbcdl(bcda, bcda, gza_f);
+    divbcdl(bcda, bcda, sun_f);
+    gzadag[4] = bcd2l(bcda);
+}
+
 void prn_cal(void)
 {
     int cur_year, last_year, new_year, zla0, zla1, intercal, delaymth,
