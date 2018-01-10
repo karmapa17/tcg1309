@@ -8,7 +8,5 @@
 
 int main()
 {
-    printf("Hello World\n");
     prn_cal();
-    printf("Good Night\n");
 }
