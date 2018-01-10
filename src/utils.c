@@ -65,6 +65,14 @@ void zla_dag (int y, int m) // KTC 15
     }
 }
 
+void clrlst(int *l)
+{
+    int n;
+    for (n = 0; n < 5; ++n) {
+        l[n] = 0;
+    }
+}
+
 void mul_gen (int *res, int *lst, int x, int n1, int n2)
 {
     if (x >= 0) {
