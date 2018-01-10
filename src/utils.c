@@ -967,11 +967,11 @@ donextyear:
             if (! zeromthfg) {   // We need to use the same data, twice.
               zla_dag (ty, tm); // But only if moving one month at a time!
             }
-            adj_zla ();
+            adj_zla();
             cur_mth = zladag[0];  // Needed for general day
-            gza_dru (cur_mth);
-            nyi_dru (cur_mth);
-            rilchaf (cur_mth); // MOVED, from gza_dag, NEW, 11/9/94
+            gza_dru(cur_mth);
+            nyi_dru(cur_mth);
+            rilchaf(cur_mth); // MOVED, from gza_dag, NEW, 11/9/94
 
             // DO WE HAVE NEW YEAR?
             if ((adj_mth == -1 || adj_mth == 1) && new_year) {
