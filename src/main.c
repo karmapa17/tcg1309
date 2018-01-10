@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "tc.def"
+#include "bcd.h"
+#include "bcd.ext"
 #include "utils.c"
 
 int main()
