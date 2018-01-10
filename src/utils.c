@@ -171,7 +171,7 @@ int chk_spec(int m, int t) {
 }
 
 // Function to calculate true month, "zla ba rnam par dag pa"
-void zla_dag (int y, int m) // KTC 15
+void zla_dag(int y, int m) // KTC 15
 {
     int yr, a, b;    // c;
     yr = y - epch_yr;
@@ -195,7 +195,7 @@ void zla_dag (int y, int m) // KTC 15
     }
 }
 
-void jul2date (int jd) {
+void jul2date(int jd) {
 
     int l, n, j, k, i;
 
@@ -253,7 +253,7 @@ void jul2date (int jd) {
     }
 }
 
-void div_g6 (int * a, int x, int frac4, int frac5) {
+void div_g6(int * a, int x, int frac4, int frac5) {
 
     l2bcd(bcdx0, a[0]);
     l2bcd(bcdx1, a[1]);
@@ -314,7 +314,7 @@ void nyi_dag(int *a1) {
     }
     else {
         nyidor = 1;
-        sub_gen (nyiwor, nyiwor, nyihaf, 27, sun_f);
+        sub_gen(nyiwor, nyiwor, nyihaf, 27, sun_f);
         test = 60 * nyiwor[0] + nyiwor[1];
     }
     trem = test % 135;
@@ -338,7 +338,7 @@ void nyi_dag(int *a1) {
     listb[1] = nyidom[tquo - 1];
 
     if (tquo == 3 || tquo == 4 || tquo == 5) {    // Then, subtract:
-        sub_gen (listc, listb, lista, 27, sun_f);
+        sub_gen(listc, listb, lista, 27, sun_f);
     }
     else {
         add_gen(listc, listb, lista, 27, sun_f);
@@ -353,7 +353,7 @@ void nyi_dag(int *a1) {
 }
 
 // Check for main Earth-lords, "sa bdag"
-int chk_sadag (int m, int t)
+int chk_sadag(int m, int t)
 {
     int yan_kwong_flg = 0;
     int klu_bzlog_flg = 0;
