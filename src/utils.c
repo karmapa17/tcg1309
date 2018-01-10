@@ -65,6 +65,87 @@ void zla_dag (int y, int m) // KTC 15
     }
 }
 
+// Adjust month number, if needed
+void adj_zla (void)
+{
+    if (epch == 2) {    // This is for Error Correction system.
+
+        if (zladag[1] == 0 || zladag[1] == 1) {
+
+            if (! zeromthfg) {    // First of two months
+                zeromthfg = 1;
+                adj_mth = tm - 1;
+                if (adj_mth == 0) {
+                    adj_mth = 12;
+                }
+                adj_mth = -adj_mth;
+                zladag[0] = zladag[0] - 1; // It has advanced 2.
+              }
+            else {   // Second
+                zeromthfg = 0;
+                adj_mth = tm;
+                zladag[0] = zladag[0] + 1; // Put it back
+            }
+        }
+        else {
+            zeromthfg = 0;
+            adj_mth = tm;
+            if (adj_mth == 0) {
+                adj_mth = 12;
+            }
+        }
+        return;
+    }
+    if (zlapure) {
+        if (zladag[1] == 0 || zladag[1] == 1) {
+            if (! zeromthfg) {
+                zeromthfg = 1;
+                adj_mth = -tm;
+                zladag[0] = zladag[0] - 1;
+            }
+            else {
+                zeromthfg = 0;
+                adj_mth = tm;
+                zladag[0] = zladag[0] + 1;
+            }
+        }
+        else {
+            adj_mth = tm;
+            if (adj_mth == 0) {
+                adj_mth = 12;
+            }
+        }
+        return;
+    }
+
+    // ELSE, DO THIS:
+    if (zladag[1] == zlasho1 || zladag[1] == zlasho2) {
+        adj_mth = -tm;
+    }
+    else if (zladag[1] > zlasho2) {
+        adj_mth = tm - 1;
+    }
+    else if (zladag[1] == 0 || zladag[1] == 1) {
+
+        if (! zeromthfg) {
+            zeromthfg = 1;
+            adj_mth = tm - 1;
+            zladag[0] = zladag[0] - 1;
+        }
+        else {
+            zeromthfg = 0;
+            adj_mth = tm;
+            zladag[0] = zladag[0] + 1;
+        }
+    }
+    else {    // Arrive here if 1 < zladag[1] < zlasho1
+        adj_mth = tm;
+    }
+    if (adj_mth == 0) {
+        adj_mth = 12;
+    }
+}
+
 void init_settings()
 {
     if (1 == epch) {
