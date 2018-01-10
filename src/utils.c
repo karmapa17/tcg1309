@@ -65,6 +65,53 @@ void zla_dag (int y, int m) // KTC 15
     }
 }
 
+void mul_gen (int *res, int *lst, int x, int n1, int n2)
+{
+    if (x >= 0) {
+        l2bcd(bcdx0, lst[0]);
+        l2bcd(bcdx1, lst[1]);
+        l2bcd(bcdx2, lst[2]);
+        l2bcd(bcdx3, lst[3]);
+        l2bcd(bcdx4, lst[4]);
+
+        mulbcdl(bcdx0, bcdx0, x);
+        mulbcdl(bcdx1, bcdx1, x);
+        mulbcdl(bcdx2, bcdx2, x);
+        mulbcdl(bcdx3, bcdx3, x);
+        mulbcdl(bcdx4, bcdx4, x);
+
+        divbcdl(bcary, bcdx4, n2);
+        modbcdl(bcdx4, bcdx4, n2);
+        addbcd(bcdx3, bcdx3, bcary);
+
+        divbcdl(bcary, bcdx3, 6);
+        modbcdl(bcdx3, bcdx3, 6);
+        addbcd(bcdx2, bcdx2, bcary);
+
+        divbcdl(bcary, bcdx2, 60);
+        modbcdl(bcdx2, bcdx2, 60);
+        addbcd(bcdx1, bcdx1, bcary);
+
+        divbcdl(bcary, bcdx1, 60);
+        modbcdl(bcdx1, bcdx1, 60);
+        addbcd(bcdx0, bcdx0, bcary);
+
+        modbcdl(bcdx0, bcdx0, n1);
+
+        res[0] = bcd2l (bcdx0);
+        res[1] = bcd2l (bcdx1);
+        res[2] = bcd2l (bcdx2);
+        res[3] = bcd2l (bcdx3);
+        res[4] = bcd2l (bcdx4);
+    }
+    else {
+        x = -x;
+        mul_gen(res, lst, x, n1, n2);
+        clrlst(zerlst);
+        sub_gen(res, zerlst, res, n1, n2);
+    }
+}
+
 // Adjust month number, if needed
 void adj_zla (void)
 {
