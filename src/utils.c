@@ -42,6 +42,59 @@ void set_grub(void)
     gza_f = 707;
 }
 
+// Routine to check for special days, festivals, anniversaries, etc.
+// Many are currently commented out. Uncomment if needed.
+// Month numbers would currently be wrong for Error Correction system.
+int chk_spec(int m, int t) {
+
+    switch (m) {
+        case 1:
+            if (t == 1) {
+                sprintf(outbuf, "%s", "From 1st to 15th, Demonstration of Miracles.");
+                return 1;
+            }
+            break;
+        case 3:
+            if (t == 15) {
+                sprintf(outbuf, "%s", "Revelation of the Kalacakra Tantra.");
+                return 1;
+            }
+            break;
+        case 4:
+            // 7 for Phugpa, 8 for Tsurphu
+            if (t == 7 && tsurlug == 0) {
+                sprintf(outbuf, "%s", "Birth of the Buddha.");
+                return 1;
+            }
+            if (t == 8 && tsurlug == 1) {
+                sprintf(outbuf, "%s", "Birth of the Buddha.");
+                return 1;
+            }
+            if (t == 15) {
+                sprintf(outbuf, "%s", "Enlightenment and Parinirvana of the Buddha.");
+                return 1;
+            }
+            break;
+        case 6:
+            if (t == 4) {
+                sprintf(outbuf, "%s", "Turning of the Wheel of the Dharma.");
+                return 1;
+            }
+            if (t == 15) {
+                sprintf(outbuf, "%s", "The Buddha's entry into the womb of his mother.");
+                return 1;
+            }
+            break;
+        case 9:
+            if (t == 22) {
+                sprintf(outbuf, "%s", "Descent of the Buddha from the realm of the gods.");
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
+
 // Function to calculate true month, "zla ba rnam par dag pa"
 void zla_dag (int y, int m) // KTC 15
 {
@@ -83,8 +136,8 @@ int chk_sadag (int m, int t)
     int zin_phung_flg = 0;
     int klu_thebs_flg = 0;
     int nyi_nag_flg = 0;
-    int i = 0;
     int sadag_str_len = 0;
+    int i = 0;
     int n;
 
     // First, "yan kwong": // Data from Kongleg.
