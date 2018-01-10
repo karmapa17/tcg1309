@@ -7,6 +7,8 @@
  */
 int epch = 1;
 
+char sadag_str[45];
+
 void set_lang(void)
 {
     int i;
@@ -83,7 +85,6 @@ int chk_sadag (int m, int t)
     int nyi_nag_flg = 0;
     int i = 0;
     int sadag_str_len = 0;
-    char sadag_str[45];
     int n;
 
     // First, "yan kwong": // Data from Kongleg.
@@ -569,7 +570,6 @@ void prn_cal(void)
     int curjd, nextjd;
 
     int lastjd = 0;
-    int sadag_str = 0;
 
     init_settings();
     set_lang();
