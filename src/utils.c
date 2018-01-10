@@ -42,6 +42,81 @@ void set_grub(void)
     gza_f = 707;
 }
 
+void add_gen(int *a1, int *a2, int *a3, int n1, int n2)
+{
+    int r;
+    r = a2[4] + a3[4];
+    if (r < 0) {
+        printf("\n\nERROR IN ADD_GEN:\n");
+        printf("A2[4] = %d\n", a2[4]);
+        printf("A3[4] = %d\n\n", a3[4]);
+    }
+    a1[4] = r % n2;
+    r = a2[3] + a3[3] + r / n2;
+    a1[3] = r % 6;
+    r = a2[2] + a3[2] + r / 6;
+    a1[2] = r % 60;
+    r = a2[1] + a3[1] + r / 60;
+    a1[1] = r % 60;
+    r = a2[0] + a3[0] + r / 60;
+    a1[0] = r % n1;
+}
+
+// Function to subtract two arrays
+// a1 = a2 - a3
+void sub_gen(int *a1, int *a2, int *a3, int n1, int n2)
+{
+    int a4[5];
+    int i;
+
+    for (i = 0; i < 5; ++i) {
+        a4[i] = a2[i];
+    }
+    a1[4] = a4[4] - a3[4];
+
+    if (a1[4] < 0) {
+        a1[4] = a1[4] + n2;
+        a4[3] = a4[3] - 1;
+    }
+    a1[3] = a4[3] - a3[3];
+
+    if (a1[3] < 0) {
+        a1[3] = a1[3] + 6;
+        a4[2] = a4[2] - 1;
+    }
+    a1[2] = a4[2] - a3[2];
+
+    if (a1[2] < 0) {
+        a1[2] = a1[2] + 60;
+        a4[1] = a4[1] - 1;
+    }
+    a1[1] = a4[1] - a3[1];
+
+    if (a1[1] < 0) {
+        a1[1] = a1[1] + 60;
+        a4[0] = a4[0] - 1;
+    }
+
+    a1[0] = a4[0] - a3[0];
+    if (a1[0] < 0) {
+        a1[0] = a1[0] + n1;
+    }
+}
+
+void clrlst(int *l)
+{
+    int n;
+    for (n = 0; n < 5; ++n) {
+        l[n] = 0;
+    }
+}
+
+void clear_a_b(void)
+{
+    clrlst(lista);
+    clrlst(listb);
+}
+
 // Routine to check for special days, festivals, anniversaries, etc.
 // Many are currently commented out. Uncomment if needed.
 // Month numbers would currently be wrong for Error Correction system.
@@ -178,18 +253,59 @@ void jul2date (int jd) {
     }
 }
 
-void clrlst(int *l)
-{
-    int n;
-    for (n = 0; n < 5; ++n) {
-        l[n] = 0;
-    }
-}
+// Function to calculate true solar longitude, "nyi dag".
+void nyi_dag(int *a1) {
 
-void clear_a_b(void)
-{
-    clrlst(lista);
-    clrlst(listb);
+    static int nyidom[6] = { 6, 10, 11, 10, 6, 0 };
+    static int nyibye[6] = { 4, 1, 1, 4, 6, 6 };
+    static int nyihaf[6] = { 13, 30, 0, 0, 0, 0 };
+    static int nyifac[6] = { 6, 45, 0, 0, 0, 0 };
+
+    int test, tquo, trem;
+
+    sub_gen(nyiwor, a1, nyifac, 27, sun_f);    // KTC 31
+    test = 60 * nyiwor[0] + nyiwor[1];
+    if (test < 810) {
+        nyidor = 0;
+    }
+    else {
+        nyidor = 1;
+        sub_gen (nyiwor, nyiwor, nyihaf, 27, sun_f);
+        test = 60 * nyiwor[0] + nyiwor[1];
+    }
+    trem = test % 135;
+    tquo = test / 135;
+
+    if (tquo == 0) {
+        tquo = 6;
+    }
+
+    clear_a_b();
+
+    lista[2] = (trem * 60 + nyiwor[2]) * nyibye[tquo - 1];
+    lista[3] = nyiwor[3] * nyibye[tquo - 1];
+    lista[4] = nyiwor[4] * nyibye[tquo - 1];
+
+    div_g6(lista, 135, sun_f, 1);
+
+    clrlst(zerlst);
+    add_gen(lista, zerlst, lista, 27, sun_f);
+
+    listb[1] = nyidom[tquo - 1];
+
+    if (tquo == 3 || tquo == 4 || tquo == 5) {    // Then, subtract:
+        sub_gen (listc, listb, lista, 27, sun_f);
+    }
+    else {
+        add_gen(listc, listb, lista, 27, sun_f);
+    }
+
+    if (nyidor == 0) {
+        sub_gen(nyidag, a1, listc, 27, sun_f);
+    }
+    else {
+        add_gen(nyidag, a1, listc, 27, sun_f);
+    }
 }
 
 // Check for main Earth-lords, "sa bdag"
@@ -480,47 +596,6 @@ int chk_sadag (int m, int t)
     return 1;
 }
 
-// Function to subtract two arrays
-// a1 = a2 - a3
-void sub_gen(int *a1, int *a2, int *a3, int n1, int n2)
-{
-    int a4[5];
-    int i;
-
-    for (i = 0; i < 5; ++i) {
-        a4[i] = a2[i];
-    }
-    a1[4] = a4[4] - a3[4];
-
-    if (a1[4] < 0) {
-        a1[4] = a1[4] + n2;
-        a4[3] = a4[3] - 1;
-    }
-    a1[3] = a4[3] - a3[3];
-
-    if (a1[3] < 0) {
-        a1[3] = a1[3] + 6;
-        a4[2] = a4[2] - 1;
-    }
-    a1[2] = a4[2] - a3[2];
-
-    if (a1[2] < 0) {
-        a1[2] = a1[2] + 60;
-        a4[1] = a4[1] - 1;
-    }
-    a1[1] = a4[1] - a3[1];
-
-    if (a1[1] < 0) {
-        a1[1] = a1[1] + 60;
-        a4[0] = a4[0] - 1;
-    }
-
-    a1[0] = a4[0] - a3[0];
-    if (a1[0] < 0) {
-        a1[0] = a1[0] + n1;
-    }
-}
-
 void mul_gen (int *res, int *lst, int x, int n1, int n2)
 {
     if (x >= 0) {
@@ -566,26 +641,6 @@ void mul_gen (int *res, int *lst, int x, int n1, int n2)
         clrlst(zerlst);
         sub_gen(res, zerlst, res, n1, n2);
     }
-}
-
-void add_gen(int *a1, int *a2, int *a3, int n1, int n2)
-{
-    int r;
-    r = a2[4] + a3[4];
-    if (r < 0) {
-        printf("\n\nERROR IN ADD_GEN:\n");
-        printf("A2[4] = %d\n", a2[4]);
-        printf("A3[4] = %d\n\n", a3[4]);
-    }
-    a1[4] = r % n2;
-    r = a2[3] + a3[3] + r / n2;
-    a1[3] = r % 6;
-    r = a2[2] + a3[2] + r / 6;
-    a1[2] = r % 60;
-    r = a2[1] + a3[1] + r / 60;
-    a1[1] = r % 60;
-    r = a2[0] + a3[0] + r / 60;
-    a1[0] = r % n1;
 }
 
 void gza_dru(int x)
