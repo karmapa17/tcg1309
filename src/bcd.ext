@@ -1,0 +1,14 @@
+extern signed char bcda[BCDMAX];
+extern signed char bcdb[BCDMAX];
+extern signed char bcdc[BCDMAX];
+extern signed char bcdd[BCDMAX];
+
+// These are for intermediate calculations only:
+extern signed char bcdx0[BCDMAX];
+extern signed char bcdx1[BCDMAX];
+extern signed char bcdx2[BCDMAX];
+extern signed char bcdx3[BCDMAX];
+extern signed char bcdx4[BCDMAX];
+extern signed char bcdx5[BCDMAX];
+extern signed char bcdx6[BCDMAX];
+extern signed char bcary[BCDMAX];
