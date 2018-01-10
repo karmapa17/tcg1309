@@ -718,6 +718,12 @@ void mul_gen (int *res, int *lst, int x, int n1, int n2)
     }
 }
 
+// Function to calculate lunar day mean weekday, "tshes kyi dhru ba".
+void tse_dru(int x)
+{
+    mul_gen(tsedru, tsedm, x, 7, gza_f);
+}
+
 // Function to calculate lunar anomaly, "ril cha"
 void rilchaf (int x)    // KTC 21
 {
