@@ -13,7 +13,7 @@ int spz_frac_b, spz_frac_c;
 int nyi_cnt;    // Count of days for solar longitude calculation;
 int rahutsa[6], rahudong[6], rahudong30[6], rahujug[6];
 int rahupart;    // 230 fraction for Rahu cycle
-double       rahurealf;
+double rahurealf;
 int zerlst[6];
 int cur_mth;   /*** Current month number, full form ***/
 int cur_tsh;   /*** Current Tithi ***/
