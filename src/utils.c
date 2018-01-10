@@ -422,6 +422,47 @@ int chk_sadag (int m, int t)
     return 1;
 }
 
+// Function to subtract two arrays
+// a1 = a2 - a3
+void sub_gen(int *a1, int *a2, int *a3, int n1, int n2)
+{
+    int a4[5];
+    int i;
+
+    for (i = 0; i < 5; ++i) {
+        a4[i] = a2[i];
+    }
+    a1[4] = a4[4] - a3[4];
+
+    if (a1[4] < 0) {
+        a1[4] = a1[4] + n2;
+        a4[3] = a4[3] - 1;
+    }
+    a1[3] = a4[3] - a3[3];
+
+    if (a1[3] < 0) {
+        a1[3] = a1[3] + 6;
+        a4[2] = a4[2] - 1;
+    }
+    a1[2] = a4[2] - a3[2];
+
+    if (a1[2] < 0) {
+        a1[2] = a1[2] + 60;
+        a4[1] = a4[1] - 1;
+    }
+    a1[1] = a4[1] - a3[1];
+
+    if (a1[1] < 0) {
+        a1[1] = a1[1] + 60;
+        a4[0] = a4[0] - 1;
+    }
+
+    a1[0] = a4[0] - a3[0];
+    if (a1[0] < 0) {
+        a1[0] = a1[0] + n1;
+    }
+}
+
 void mul_gen (int *res, int *lst, int x, int n1, int n2)
 {
     if (x >= 0) {
