@@ -890,7 +890,7 @@ donextyear:
 
             // Calculate lunar mansion at daybreak:
             // add solar longitude to tithi * factor. Then subtract hours, etc., from gzadag
-            clear_a_b ();
+            clear_a_b();
             for (i = 0; i < 5; ++i) {
               monlong[i] = 0;
             }
