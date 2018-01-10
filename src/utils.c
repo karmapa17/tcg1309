@@ -76,7 +76,14 @@ void clrlst(int *l)
 // Check for main Earth-lords, "sa bdag"
 int chk_sadag (int m, int t)
 {
+    int yan_kwong_flg = 0;
+    int klu_bzlog_flg = 0;
+    int zin_phung_flg = 0;
+    int klu_thebs_flg = 0;
+    int nyi_nag_flg = 0;
     int i = 0;
+    int sadag_str_len = 0;
+    char sadag_str[45];
     int n;
 
     // First, "yan kwong": // Data from Kongleg.
