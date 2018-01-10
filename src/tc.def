@@ -1,53 +1,53 @@
 int d_bug;
 
-int     zladag[2], tt, tm, ty, nyidor, tmth;
-int     zlasho1, zlasho2;
-int     ltt, ltm, lty;
-int     nyidru[6], nyilon[6], nyibar[6], gzadru[6], tsedru[6], tsebar[6];
-int     nyiwor[6], nyidag[6], rilcha[2], gzadag[6], mondag[6], monsar[6];
-int     nyibarl, tsebarl;
-int     nxt_nyidag[6], nxt_gzadag[6];
-int     prv_nyidag[6], prv_gzadag[6];
-int     prv_sbyorlong[6], sbyorlong[6];
-int     spz_frac_b, spz_frac_c;
-int     nyi_cnt; // Count of days for solar longitude calculation;
-int     rahutsa[6], rahudong[6], rahudong30[6], rahujug[6];
-int     rahupart;    // 230 fraction for Rahu cycle
+int zladag[2], tt, tm, ty, nyidor, tmth;
+int zlasho1, zlasho2;
+int ltt, ltm, lty;
+int nyidru[6], nyilon[6], nyibar[6], gzadru[6], tsedru[6], tsebar[6];
+int nyiwor[6], nyidag[6], rilcha[2], gzadag[6], mondag[6], monsar[6];
+int nyibarl, tsebarl;
+int nxt_nyidag[6], nxt_gzadag[6];
+int prv_nyidag[6], prv_gzadag[6];
+int prv_sbyorlong[6], sbyorlong[6];
+int spz_frac_b, spz_frac_c;
+int nyi_cnt;    // Count of days for solar longitude calculation;
+int rahutsa[6], rahudong[6], rahudong30[6], rahujug[6];
+int rahupart;    // 230 fraction for Rahu cycle
 double       rahurealf;
-int     zerlst[6];
-int     cur_mth;   /*** Current month number, full form ***/
-int     cur_tsh;   /*** Current Tithi ***/
-int     ch_lh[6];
-int     lst_dy, cur_dy;
-int     zeromthfg;  // Flag for zero fractional part in month;
-int     scndzero;  // New flag for zero fractional part of month.
-int     spizag, spizag15, spizag30;
-int     juldat;  /** Julian day number **/
-int     wd, wm, wy;  /** Western dates **/
-int     doweek;      // Day of the week
-int     epch_yr, eyr_a, ril_a, ril_b;
-int     epch;
-int     zlapure;
-int     tsurlug;
-int     gza_short_flg = 0; // Flag for less accurate weekday adjustment
-int     gza_f;
-int     sun_f;
+int zerlst[6];
+int cur_mth;   /*** Current month number, full form ***/
+int cur_tsh;   /*** Current Tithi ***/
+int ch_lh[6];
+int lst_dy, cur_dy;
+int zeromthfg;    // Flag for zero fractional part in month;
+int scndzero;    // New flag for zero fractional part of month.
+int spizag, spizag15, spizag30;
+int juldat;    /** Julian day number **/
+int wd, wm, wy;    /** Western dates **/
+int doweek;    // Day of the week
+int epch_yr, eyr_a, ril_a, ril_b;
+int epch;
+int zlapure;
+int tsurlug;
+int gza_short_flg = 0;    // Flag for less accurate weekday adjustment
+int gza_f;
+int sun_f;
 
-int   lista[6], listb[6], listc[6];
-int   monlong[6];
-int   prv_monlong[6];
-int   list1[6], list2[6], list3[6];
-int   adj_mth;
+int lista[6], listb[6], listc[6];
+int monlong[6];
+int prv_monlong[6];
+int list1[6], list2[6], list3[6];
+int adj_mth;
 
 // Planet figures
 
-int meradd;  // Figures to be added for planets for the
-int venadd;  // nyin zhag dal ba. These are days of cycle.
+int meradd;    // Figures to be added for planets for the
+int venadd;    // nyin zhag dal ba. These are days of cycle.
 int maradd;
 int jupadd;
 int satadd;
-int dragkadd; // This is added for drag po'iu rkang 'dzin.
-int dragkres;  // Result for day in question -- NEW 3/12/2009
+int dragkadd;    // This is added for drag po'iu rkang 'dzin.
+int dragkres;    // Result for day in question -- NEW 3/12/2009
 int mar_gz, jup_gz, sat_gz, mer_gz, ven_gz; // Particular days.
 
 int merdaldag[6];
@@ -114,7 +114,7 @@ char *lunmanS[27] = { "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashiras",
 int lunmanelem[27] = { 3, 2, 2, 0, 3, 1, 3, 2, 1, 2, 2, 3, 3, 3, 3, 2, 0, 0,
                        1, 1, 0, 0, 1, 0, 2, 1, 1 };
 
-char *lunmont[12] = { "dbo", "nag pa", "sa ga",	"snron", "chu stod", "gro bzhin", 
+char *lunmont[12] = { "dbo", "nag pa", "sa ga", "snron", "chu stod", "gro bzhin",
 "khrums", "tha skar", "smin drug", "mgo", "rgyal", "mchu" };
 
 char *fourelem[4] = { "Earth", "Water", "Fire", "Wind" };
@@ -122,33 +122,33 @@ int dowkelem[7] = { 0, 2, 1, 2, 1, 3, 0 };
 
 // Below taken from Jampa Gyaltsen:
 
-//0      tha skar (=dbyug)   rlung     3
-//1      bra nye             me        2
-//2      smin drug           me        2
-//3      snar ma             sa        0
-//4      mgo                 rlung     3
-//5      lag                 chu       1
-//6      nabs so             rlung     3
-//7      rgyal               me        2
-//8      skag                chu       1
-//9      mchu                me        2
-//10     gre                 me        2
-//11     dbo                 rlung     3
-//12     me bzhi             rlung     3
-//13     nag pa              rlung     3
-//14     sa ri               rlung     3
-//15     sa ga               me        2
-//16     lha mtshams         sa        0
-//17     snron               sa        0
-//18     snrubs              chu       1
-//19     chu stod  (=bre)    chu       1
-//20     chu smad            sa        0
-//21     gro bzhin           sa        0
-//22     mon gre             chu       1
-//23     mon gru             sa        0
-//24     khrums stod         me        2
-//25     khrums smad         chu       1
-//26     nam gru             chu       1
+// 0      tha skar (=dbyug)   rlung     3
+// 1      bra nye             me        2
+// 2      smin drug           me        2
+// 3      snar ma             sa        0
+// 4      mgo                 rlung     3
+// 5      lag                 chu       1
+// 6      nabs so             rlung     3
+// 7      rgyal               me        2
+// 8      skag                chu       1
+// 9      mchu                me        2
+// 10     gre                 me        2
+// 11     dbo                 rlung     3
+// 12     me bzhi             rlung     3
+// 13     nag pa              rlung     3
+// 14     sa ri               rlung     3
+// 15     sa ga               me        2
+// 16     lha mtshams         sa        0
+// 17     snron               sa        0
+// 18     snrubs              chu       1
+// 19     chu stod  (=bre)    chu       1
+// 20     chu smad            sa        0
+// 21     gro bzhin           sa        0
+// 22     mon gre             chu       1
+// 23     mon gru             sa        0
+// 24     khrums stod         me        2
+// 25     khrums smad         chu       1
+// 26     nam gru             chu       1
 
 char *yogaP[27];
 char *yogaT[27] = { "rnam sel", "mdza' bo", "tshe dang ldan pa", "skal bzang",
@@ -188,10 +188,8 @@ char *cycgendT[2] = { "pho", "mo" };
 
 char *cycgendE[2] = { "male", "female" };
 
-char *cycpar[8] = { "zon", "li", "khon", "dwa", "khen", "kham", "gin", "zin"
-                                                                         };
-char *cycparT[8] = { "zon", "li", "khon", "dwa", "khen", "kham", "gin", "zin"
-                                                                         };
+char *cycpar[8] = { "zon", "li", "khon", "dwa", "khen", "kham", "gin", "zin" };
+char *cycparT[8] = { "zon", "li", "khon", "dwa", "khen", "kham", "gin", "zin" };
 char *cycparE[8] = { "Gentle", "Clinging", "Receptive", "Joyous", "Creative",
                      "Abysmal", "Keeping Still", "Arousing" };
 
@@ -233,12 +231,12 @@ Trigram:  li  khon  dwa  khen  kham   gin  zin  zon  ******************/
 
 
 /* utils */
-static int nda2[6] = { 0, 7, 25, 0, 30, 0 }; // OK
-static int gda2[6] = { 5, 38, 22, 3, 701, 0 }; // OK
+static int nda2[6] = { 0, 7, 25, 0, 30, 0 };    // OK
+static int gda2[6] = { 5, 38, 22, 3, 701, 0 };    // OK
 int spz_b, spz_c, spz_f, spz_j;
 int gzada[6];
 int nyida[6];
-static int nyilmg[6] = { 0, 4, 21, 5, 43, 0 }; // Each lunar day
+static int nyilmg[6] = { 0, 4, 21, 5, 43, 0 };    // Each lunar day
 int nyidm[6], gzadm[6], tsedm[6], nyilm[6];
 static int nyidmg[6] = { 2, 10, 58, 1, 17, 0 };
 static int tsedmg[6] = { 0, 59, 3, 4, 16, 0 };
