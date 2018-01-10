@@ -253,6 +253,37 @@ void jul2date(int jd) {
     }
 }
 
+// Function to calculate general day, "spyi zhag"
+// Calculates Julian for the integer Julian day count at noon UT
+// on weekday of "gza' dag". Put into juldat.
+void spi_zagf(void) // KTC 46
+{
+    int b, c;
+    spizag = cur_mth * 30 + tt;
+    c = spizag + spz_c;
+    spz_frac_c = c % 707;
+    b = spizag + spz_b;
+    b = b + c / 707;
+    spz_frac_b = b % 64;
+    spizag = spizag - b / 64;
+    c = ( spizag + spz_f ) % 7;
+    b = gzadag[0];
+    if (c != b) {
+        if ( c > 4 && b < 2 ) {
+            b += 7;
+        }
+        else if ( b > 4 && c < 2 ) {
+            c += 7;
+        }
+        spizag = spizag + b - c;
+    }
+    if (b - c > 2) {
+        printf ("\nERROR IN GENERAL DAY ROUTINE: %d\n", b - c);
+    }
+    juldat = spizag + spz_j;
+    jul2date(juldat);
+}
+
 void div_g6(int * a, int x, int frac4, int frac5) {
 
     l2bcd(bcdx0, a[0]);
