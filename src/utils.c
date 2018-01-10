@@ -700,12 +700,12 @@ void gza_dag(int *a1)
     gzawor[4] = bcd2l(bcda);
 
     //  The above replaces:
-    //  gzawor[4] = ( sun_f * gzawor[4] ) / gza_f;
+    //  gzawor[4] = (sun_f * gzawor[4]) / gza_f;
     if (nyidor == 0) {
       sub_gen(gzadag, gzawor, listc, 7, sun_f);
     }
     else {
-      add_gen (gzadag, gzawor, listc, 7, sun_f);
+      add_gen(gzadag, gzawor, listc, 7, sun_f);
     }
 
     // Convert back the lowest fractional part:
