@@ -961,7 +961,6 @@ void prn_cal(void)
 
     int lastjd = 0;
 
-    init_settings();
     set_lang();
 
     printf("\n\n%s\n", e_str[epch]);
