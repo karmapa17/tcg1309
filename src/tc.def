@@ -88,34 +88,31 @@ double rahtl;
 
 // String variables:
 
-char *e_str[] = { "1. Generalised Phugpa, -1000.",
-                  "2. Generalised Tsurphu, -1000.",
-                  "3. Generalised Error Correction, -2000.",
-                  "4. mkhas pa'i snying nor, 1796.",
-                  "5. New Genden Calculations, 1747 CE." };
+char *e_str[] = {
+    "1. Generalised Phugpa, -1000.",
+    "2. Generalised Tsurphu, -1000.",
+    "3. Generalised Error Correction, -2000.",
+    "4. mkhas pa'i snying nor, 1796.",
+    "5. New Genden Calculations, 1747 CE."
+};
 
 char *dayoweek[7] = { "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" };
 
 char *lunmanP[27];
-char *lunmanT[27] = { "tha skar", "bra nye", "smin drug", "snar ma", "mgo",
-                    "lag", "nabs so", "rgyal", "skag", "mchu", "gre", "dbo",
-                    "me bzhi", "nag pa", "sa ri", "sa ga", "lha mtshams",
-                    "snron", "snrubs", "chu stod", "chu smad", "gro zhin",
-                    "mon gre", "mon gru", "khrums stod", "khrums smad",
-                    "nam gru" };
-char *lunmanS[27] = { "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashiras",
-                    "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha",
-                    "Purvaphalguni", "Uttaraphalguni", "Hasta", "Citra",
-                    "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-                    "Purvashadha", "Uttarashadha", "Abhijit", "Dhanishtha",
-                    "Shatabhishaj", "Purvabhadrapada", "Uttarabhadrapada",
-                    "Revati" };
+char *lunmanT[27] = { "tha skar", "bra nye", "smin drug", "snar ma", "mgo", "lag", "nabs so", "rgyal", "skag", "mchu", "gre", "dbo", "me bzhi",
+    "nag pa", "sa ri", "sa ga", "lha mtshams", "snron", "snrubs", "chu stod", "chu smad", "gro zhin", "mon gre", "mon gru", "khrums stod",
+    "khrums smad", "nam gru" };
+
+char *lunmanS[27] = {
+    "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashiras", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purvaphalguni",
+    "Uttaraphalguni", "Hasta", "Citra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula", "Purvashadha", "Uttarashadha", "Abhijit",
+    "Dhanishtha", "Shatabhishaj", "Purvabhadrapada", "Uttarabhadrapada", "Revati"
+};
 
 int lunmanelem[27] = { 3, 2, 2, 0, 3, 1, 3, 2, 1, 2, 2, 3, 3, 3, 3, 2, 0, 0,
                        1, 1, 0, 0, 1, 0, 2, 1, 1 };
 
-char *lunmont[12] = { "dbo", "nag pa", "sa ga", "snron", "chu stod", "gro bzhin",
-"khrums", "tha skar", "smin drug", "mgo", "rgyal", "mchu" };
+char *lunmont[12] = { "dbo", "nag pa", "sa ga", "snron", "chu stod", "gro bzhin", "khrums", "tha skar", "smin drug", "mgo", "rgyal", "mchu" };
 
 char *fourelem[4] = { "Earth", "Water", "Fire", "Wind" };
 int dowkelem[7] = { 0, 2, 1, 2, 1, 3, 0 };
@@ -151,20 +148,13 @@ int dowkelem[7] = { 0, 2, 1, 2, 1, 3, 0 };
 // 26     nam gru             chu       1
 
 char *yogaP[27];
-char *yogaT[27] = { "rnam sel", "mdza' bo", "tshe dang ldan pa", "skal bzang",
-                  "dge byed", "shin tu 'grams", "las bzang", "'dzin byed",
-                  "zug rngu", "'grams", "'phel", "brtan pa", "yongs bsnun",
-                  "dga' ba", "rdo rje", "dngos grub", "phan tshun",
-                  "mchog can", "yongs 'joms", "zhi ba", "grub pa",
-                  "bsgrub bya", "dge ba", "dkar po", "tshangs pa",
-                  "dbang po", "'khon 'dzin" };
+char *yogaT[27] = { "rnam sel", "mdza' bo", "tshe dang ldan pa", "skal bzang", "dge byed", "shin tu 'grams", "las bzang",
+    "'dzin byed", "zug rngu", "'grams", "'phel", "brtan pa", "yongs bsnun", "dga' ba", "rdo rje", "dngos grub", "phan tshun",
+     "mchog can", "yongs 'joms", "zhi ba", "grub pa", "bsgrub bya", "dge ba", "dkar po", "tshangs pa", "dbang po", "'khon 'dzin" };
 
-char *yogaS[27] = { "Vikambha", "Prti", "yumat", "Saubhgya", "obhana",
-                  "Atigaa", "Sukarman", "Dhiti", "la", "Gaa",
-                  "Viddhi", "Dhruva", "Vyghta", "Haraa", "Vajra",
-                  "Siddhi", "Vyatipta", "Varyas", "Parigha", "iva",
-                  "Siddha", "Sdhya", "ubha", "ukla", "Brahman",
-                  "Indra", "Vaidhiti" };
+char *yogaS[27] = { "Vikambha", "Prti", "yumat", "Saubhgya", "obhana", "Atigaa", "Sukarman", "Dhiti", "la", "Gaa", "Viddhi",
+   "Dhruva", "Vyghta", "Haraa", "Vajra", "Siddhi", "Vyatipta", "Varyas", "Parigha", "iva", "Siddha", "Sdhya", "ubha", "ukla",
+   "Brahman", "Indra", "Vaidhiti" };
 
 char *byedP[11];
 char *byedT[11] = { "gdab pa", "byis pa", "rigs can", "til rdung",
