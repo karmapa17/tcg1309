@@ -8,5 +8,6 @@
 
 int main()
 {
+    set_epoch();
     prn_cal();
 }
