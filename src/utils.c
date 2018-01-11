@@ -836,32 +836,38 @@ void adj_zla (void)
 
 void init_settings()
 {
-    if (1 == epch) {
+    static int gda1[6] = { 5, 35, 36, 4, 160, 0 };
+    static int nda1[6] = { 26, 45, 53, 4, 26, 0 };
+
+    // Generalised phug, year -1000
+    if (0 == epch) {
         set_grub();
         int i;
         for (i = 0; i < 6; ++i) {
-          gzada[i] = gda2[i];
+          gzada[i] = gda1[i];
         }
         for (i = 0; i < 6; ++i) {
-          nyida[i] = nda2[i];
+          nyida[i] = nda1[i];
         }
         epch_yr = -1000;
-        eyr_a = 11;    // Intercalation index
-        ril_a = 6;    // OK
-        ril_b = 75;    // OK
-        spz_b = 50;    // 64 fraction - OK
-        spz_c = 66;    // 707 fraction - OK
-        spz_f = 5;    // OK
-        spz_j = 1355847;    // OK
-        rahupart = 93;   // 230 fraction for Rahu cycle // OK
-        meradd = 1977;    // OK
-        venadd = 268;    // OK
-        maradd = 3;    // OK
-        jupadd = 512;    // OK
-        satadd = 2988;   // OK
-        dragkadd = 83343;
-        zlapure = 1;
-        tsurlug = 1;
+        eyr_a = 7;    // Intercalation index
+        ril_a = 6;
+        ril_b = 61;
+        spz_c = 10;
+        spz_b = 26;
+        spz_f = 5;
+        spz_j = 1355847;
+        rahupart = 93;    // 230 fraction for Rahu cycle
+        dragkadd = 6663418;    // This is added for "drag po'i rkang 'dzin".
+        meradd = 2080;    // Figures to be added for planets for the
+        venadd = 277;    // nyin zhag dal ba. These are days of cycle.
+        maradd = 4;
+        jupadd = 511;
+        satadd = 2995;
+        zlasho1 = 48;
+        zlasho2 = 49;
+        zlapure = 0;
+        tsurlug = 0;
     }
 }
 
