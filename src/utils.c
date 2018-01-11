@@ -5,7 +5,7 @@
  * 3. mkhas pa'i snying nor, 1796.",
  * 4. New Genden Calculations, 1747 CE."
  */
-int epch = 1;
+int epch = 0;
 
 char sadag_str[45];
 
