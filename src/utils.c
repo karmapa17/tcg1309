@@ -834,7 +834,7 @@ void adj_zla (void)
     }
 }
 
-void init_settings()
+void set_epoch()
 {
     static int gda1[6] = { 5, 35, 36, 4, 160, 0 };
     static int nda1[6] = { 26, 45, 53, 4, 26, 0 };
