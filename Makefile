@@ -7,4 +7,4 @@ run:
 	bin/main
 
 clean:
-	rm -rf bin/*
+	rm -rf *.txt
