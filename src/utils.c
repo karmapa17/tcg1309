@@ -1,9 +1,9 @@
 /**
- * 1. Generalised Phugpa, -1000.",
- * 2. Generalised Tsurphu, -1000.",
- * 3. Generalised Error Correction, -2000.",
- * 4. mkhas pa'i snying nor, 1796.",
- * 5. New Genden Calculations, 1747 CE."
+ * 0. Generalised Phugpa, -1000.",
+ * 1. Generalised Tsurphu, -1000.",
+ * 2. Generalised Error Correction, -2000.",
+ * 3. mkhas pa'i snying nor, 1796.",
+ * 4. New Genden Calculations, 1747 CE."
  */
 int epch = 1;
 
