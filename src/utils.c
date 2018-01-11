@@ -1394,7 +1394,7 @@ donextyear:
                     // LINE 2. First of duplicated day
                     sprintf(outbuf, "%s, %s, %s, %s %d", yogaP[prv_sbyorba], byedP[prv_byedpax], cycanim[ld_animx],
                         cycpar[ld_parx], ld_smex);
-                    fprintf(fptgt, "\0x20\0x20%s\n", outbuf);
+                    fprintf(fptgt, "\x20\x20%s\n", outbuf);
 
                     // LINE 3. First of duplicated day
                     if (tsurlug == 1) {
