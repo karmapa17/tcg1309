@@ -1,3 +1,5 @@
+#include "getch.c"
+
 /**
  * 0. Generalised Phugpa, -1000.",
  * 1. Generalised Tsurphu, -1000.",
@@ -834,33 +836,73 @@ void adj_zla (void)
     }
 }
 
-void set_epoch()
+void set_epoch(void)
 {
+    // Figures for Generalised phug lugs, year -1000 (1
     static int gda1[6] = { 5, 35, 36, 4, 160, 0 };
     static int nda1[6] = { 26, 45, 53, 4, 26, 0 };
 
+    // Figures for Generalised "'khrul sel", year -1000 (3)
+    static int gda3[6] = { 6, 13, 6, 0, 288, 0 };
+    static int nda3[6] = { 26, 31, 47, 2, 52, 0 };
+
+    // Figures for "mkhas pa'i snying nor", year 1796 (4)
+    static int gda4[6] = { 5, 24, 44, 1, 565, 0 };
+    static int nda4[6] = { 26, 27, 45, 4, 2, 0 };
+
+    // Figures for "dge ldan rtsis gsar, year 1747 (5)
+    static int gda5[6] = { 1, 55, 13, 3, 333, 0 };
+    static int nda5[6] = { 26, 39, 51, 0, 18, 0 };
+
+    char chr;
+    int i;
+
+    printf("\n\nSelect from the following:\n\n");
+
+    for (i = 0; i < 5; ++i) {
+        printf("%s\n", e_str[i]);
+    }
+
+    do {
+        chr = getch();
+    }
+    while (chr < '1' || chr > '5');
+
+    if (chr >= '1' && chr <= '9') {
+        epch = chr - '0' - 1;
+    }
+
     // Generalised phug, year -1000
-    if (0 == epch) {
+    if (chr == '1') {
         set_grub();
-        int i;
         for (i = 0; i < 6; ++i) {
-          gzada[i] = gda1[i];
+            gzada[i] = gda1[i];
         }
         for (i = 0; i < 6; ++i) {
-          nyida[i] = nda1[i];
+            nyida[i] = nda1[i];
         }
         epch_yr = -1000;
-        eyr_a = 7;    // Intercalation index
+
+        // Intercalation index
+        eyr_a = 7;
         ril_a = 6;
         ril_b = 61;
         spz_c = 10;
         spz_b = 26;
         spz_f = 5;
         spz_j = 1355847;
-        rahupart = 93;    // 230 fraction for Rahu cycle
-        dragkadd = 6663418;    // This is added for "drag po'i rkang 'dzin".
-        meradd = 2080;    // Figures to be added for planets for the
-        venadd = 277;    // nyin zhag dal ba. These are days of cycle.
+
+        // 230 fraction for Rahu cycle
+        rahupart = 93;
+
+        // This is added for "drag po'i rkang 'dzin".
+        dragkadd = 6663418;
+
+        // Figures to be added for planets for the
+        meradd = 2080;
+
+        // nyin zhag dal ba. These are days of cycle.
+        venadd = 277;
         maradd = 4;
         jupadd = 511;
         satadd = 2995;
@@ -868,6 +910,122 @@ void set_epoch()
         zlasho2 = 49;
         zlapure = 0;
         tsurlug = 0;
+
+    }
+    else if (chr == '2') {    // Generalised Tshurphu, year -1000
+
+        set_grub();
+
+        for (i = 0; i < 6; ++i) {
+            gzada[i] = gda2[i];
+        }
+        for (i = 0; i < 6; ++i) {
+            nyida[i] = nda2[i];
+        }
+        epch_yr = -1000;
+
+        // Intercalation index
+        eyr_a = 11;
+        ril_a = 6;    // OK
+        ril_b = 75;    // OK
+        spz_b = 50;    // 64 fraction - OK
+        spz_c = 66;    // 707 fraction - OK
+        spz_f = 5;    // OK
+        spz_j = 1355847;    // OK
+        rahupart = 93;    // 230 fraction for Rahu cycle // OK
+        meradd = 1977;    // OK
+        venadd = 268;    // OK
+        maradd = 3;    // OK
+        jupadd = 512;    // OK
+        satadd = 2988;    // OK
+        dragkadd = 83343;
+        zlapure = 1;
+        tsurlug = 1;
+
+    }
+    else if (chr == '3') {    // Generalised Error Correction, "'khrul sel", year -2000
+        set_grub();
+        for (i = 0; i < 6; ++i) {
+            gzada[i] = gda3[i];
+        }
+        for (i = 0; i < 6; ++i) {
+            nyida[i] = nda3[i];
+        }
+        epch_yr = -2000;
+        eyr_a = 14;    // Intercalation index
+        ril_a = 4;    // OK
+        ril_b = 50;    // OK
+        spz_b = 33;    // 64 fraction - not given in current texts; calculated
+        spz_c = 565;    // 707 fraction - not given in current texts; calculated
+        spz_f = 6;    // OK
+        spz_j = 990553;    // OK
+        rahupart = 144;    // 230 fraction for Rahu cycle // OK
+
+        // According to "nor bzang rgya mtsho", the figures for planets at
+        // Error Correction epoch are those given in the tantra.
+        // The following are calculated on that basis:
+        // Should be checked against recent Drepung finds
+        meradd = 26;
+        venadd = 2421;
+        maradd = 62;
+        jupadd = 403;
+        satadd = 1727;
+        dragkadd = 6607043;    // Not given in current texts; calculated
+        zlapure = 1;
+    }
+    else if (chr == '4') {    // mkhas pa'i snying nor
+        set_grub();
+        for (i = 0; i < 5; ++i) {
+            gzada[i] = gda4[i];
+        }
+        for (i = 0; i < 5; ++i) {
+            nyida[i] = nda4[i];
+        }
+        epch_yr = 1796;
+        eyr_a = 16;    // Intercalation index, OK
+        ril_a = 8;    // OK
+        ril_b = 52;   // OK
+        spz_b = 37;    // ??
+        spz_c = 433;    // ??
+        spz_f = 5;    // OK
+        spz_j = 2377133;    // OK
+        rahupart = 178;    // 230 fraction for Rahu cycle OK
+        meradd = 6303;    // Check
+        venadd = 522;    // Check
+        maradd = 408;    // OK
+        jupadd = 3780;    // OK
+        satadd = 1518;    // OK
+        dragkadd = 6591588;    // Calculated from longitude in text. OK
+        zlasho1 = 48;    // Assumed due to solar terms used.
+        zlasho2 = 49;
+    }
+    else if (chr == '5') {    // dge ldan rtsis gsar
+
+        set_grub();
+
+        for (i = 0; i < 5; ++i) {
+            gzada[i] = gda5[i];
+        }
+        for (i = 0; i < 5; ++i) {
+            nyida[i] = nda5[i];
+        }
+        epch_yr = 1747;
+        eyr_a = 10;    // Intercalation index, OK
+        ril_a = 24;    // OK
+        ril_b = 22;    // OK
+        spz_b = 5;    // ??
+        spz_c = 65;    // ??
+        spz_f = 1;    // OK
+        spz_j = 2359237;    // OK
+        rahupart = 32;    // 230 fraction for Rahu cycle OK
+        meradd = 2518;    // Check
+        venadd = 1329;    // Check
+        maradd = 375;    // OK
+        jupadd = 3213;    // OK
+        satadd = 5147;    // OK
+        dragkadd = 6632355;    // Calculated from longitude in text. OK
+        zlasho1 = 46;
+        zlasho2 = 47;
     }
 }
 
